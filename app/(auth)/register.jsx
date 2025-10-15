@@ -11,12 +11,21 @@ import { Link } from 'expo-router';
 import ThemedButton from '../../components/ThemedButton';
 import ThemedTextInput from '../../components/ThemedTextInput';
 import { useState } from 'react';
+import { useUser } from '../../hooks/useUser';
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const handleSubmit = () => {
-    console.log('Register Form Submitted', email, password);
+  const { user, register } = useUser();
+  console.log('User:::', user);
+
+  const handleSubmit = async () => {
+    try {
+      await register(email, password);
+      console.log('registered', email, password);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -70,5 +79,9 @@ const styles = StyleSheet.create({
   },
   btnText: {
     color: '#fff',
+  },
+  link: {
+    marginVertical: 10,
+    fontStyle: 'italic',
   },
 });
