@@ -9,7 +9,6 @@ const Profile = () => {
   const { logout } = useUser();
 
   const { user } = useUser();
-  console.log('user:::', user);
 
   return (
     <ThemedView style={styles.container}>

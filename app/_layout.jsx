@@ -1,7 +1,8 @@
-import { StyleSheet, Text, useColorScheme, View } from 'react-native';
+import { StyleSheet, useColorScheme } from 'react-native';
 import { Stack } from 'expo-router';
 import { Colors } from '../constants/Colors';
-import { UserContext, UserProvider } from '../contexts/UserContext';
+import {  UserProvider } from '../contexts/UserContext';
+import { BooksProvider } from '../contexts/BooksContext';
 
 const RootLayout = () => {
   const colorScheme = useColorScheme();
@@ -9,6 +10,7 @@ const RootLayout = () => {
 
   return (
     <UserProvider>
+      <BooksProvider>
       <Stack
         screenOptions={{
           headerStyle: { backgroundColor: theme.navBackground },
@@ -21,6 +23,7 @@ const RootLayout = () => {
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="(dashboard)" options={{ headerShown: false }} />
       </Stack>
+      </BooksProvider>
     </UserProvider>
   );
 };
