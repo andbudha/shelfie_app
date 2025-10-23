@@ -1,6 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { databases } from "../lib/appwrite";
-import { ID, Permission, Role } from "react-native-appwrite";
+import { ID, Permission, Query, Role } from "react-native-appwrite";
 import { useUser } from "../hooks/useUser";
 
 const dataBaseId = process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID;
@@ -12,6 +12,13 @@ export function BooksProvider({ children }) {
   const { user } = useUser();
   async function getBooks() {
     try {
+      const response = await databases.listDocuments(
+        dataBaseId,
+        booksCollectionId,
+        [Query.equal("userId", user.$id)]
+      );
+      setBooks(response.documents);
+      console.log(response.documents);
     } catch (error) {
       console.error(error.message);
     }
@@ -49,6 +56,13 @@ export function BooksProvider({ children }) {
     }
   }
 
+  useEffect(() => {
+    if (user) {
+      getBooks();
+    } else {
+      setBooks([]);
+    }
+  }, [user]);
   return (
     <BooksContext.Provider
       value={{ books, getBooks, getBookById, createBook, deleteBookById }}
