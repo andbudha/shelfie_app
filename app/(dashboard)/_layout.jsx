@@ -1,8 +1,8 @@
-import { Tabs } from 'expo-router';
-import { useColorScheme } from 'react-native';
-import { Colors } from '../../constants/Colors';
-import { Ionicons } from '@expo/vector-icons';
-import UserOnly from '../../components/auth/UserOnly';
+import { Tabs } from "expo-router";
+import { useColorScheme } from "react-native";
+import { Colors } from "../../constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
+import UserOnly from "../../components/auth/UserOnly";
 
 const DashboardLayout = () => {
   const colorScheme = useColorScheme();
@@ -24,10 +24,10 @@ const DashboardLayout = () => {
         <Tabs.Screen
           name="profile"
           options={{
-            title: 'Profile',
+            title: "Profile",
             tabBarIcon: ({ focused }) => (
               <Ionicons
-                name={focused ? 'person' : 'person-outline'}
+                name={focused ? "person" : "person-outline"}
                 size={24}
                 color={theme.iconColor}
               />
@@ -37,10 +37,10 @@ const DashboardLayout = () => {
         <Tabs.Screen
           name="books"
           options={{
-            title: 'Books',
+            title: "Books",
             tabBarIcon: ({ focused }) => (
               <Ionicons
-                name={focused ? 'book' : 'book-outline'}
+                name={focused ? "book" : "book-outline"}
                 size={24}
                 color={theme.iconColor}
               />
@@ -50,14 +50,20 @@ const DashboardLayout = () => {
         <Tabs.Screen
           name="create"
           options={{
-            title: 'Create',
+            title: "Create",
             tabBarIcon: ({ focused }) => (
               <Ionicons
-                name={focused ? 'create' : 'create-outline'}
+                name={focused ? "create" : "create-outline"}
                 size={24}
                 color={theme.iconColor}
               />
             ),
+          }}
+        />
+        <Tabs.Screen
+          name="books/[id]"
+          options={{
+            href: null,
           }}
         />
       </Tabs>
