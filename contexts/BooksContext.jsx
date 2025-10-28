@@ -24,8 +24,14 @@ export function BooksProvider({ children }) {
     }
   }
 
-  async function getBookById(id) {
+  async function getBookById(bookId) {
     try {
+      const response = await databases.getDocument(
+        dataBaseId,
+        booksCollectionId,
+        bookId
+      );
+      return response;
     } catch (error) {
       console.error(error.message);
     }
