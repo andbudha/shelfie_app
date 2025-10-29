@@ -18,7 +18,6 @@ export function BooksProvider({ children }) {
         [Query.equal("userId", user.$id)]
       );
       setBooks(response.documents);
-      console.log(response.documents);
     } catch (error) {
       console.error(error.message);
     }
@@ -55,8 +54,9 @@ export function BooksProvider({ children }) {
     }
   }
 
-  async function deleteBookById() {
+  async function deleteBookById(bookId) {
     try {
+      await databases.deleteDocument(dataBaseId, booksCollectionId, bookId);
     } catch (error) {
       console.error(error.message);
     }
@@ -72,6 +72,9 @@ export function BooksProvider({ children }) {
         const { payload, events } = response;
         if (events[0].includes("create")) {
           setBooks((prev) => [...prev, payload]);
+        }
+        if (events[0].includes("delete")) {
+          setBooks((prev) => prev.filter((book) => book.$id !== payload.$id));
         }
       });
     } else {
