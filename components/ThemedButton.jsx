@@ -1,5 +1,5 @@
-import { Pressable, StyleSheet } from 'react-native';
-import { Colors } from '../constants/Colors';
+import { Pressable, StyleSheet } from "react-native";
+import { Colors } from "../constants/Colors";
 
 const ThemedButton = ({ style, ...props }) => {
   return (
@@ -17,10 +17,10 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 5,
     backgroundColor: Colors.primary,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '40%',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "40%",
   },
   pressed: {
     opacity: 0.8,

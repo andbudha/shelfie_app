@@ -14,9 +14,12 @@ const Books = () => {
 
   return (
     <ThemedView style={styles.container}>
-      <Spacer />
+      <Spacer height={50} />
       <ThemedText title style={styles.heading}>
-        Your Reading List
+        Your Reading List Is Empty
+      </ThemedText>
+      <ThemedText title style={styles.heading}>
+        Add Books
       </ThemedText>
       <FlatList
         data={books}
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   card: {
-    width: "90%",
+    minWidth: "90%",
     marginHorizontal: "5%",
     marginVertical: 10,
     padding: 10,
